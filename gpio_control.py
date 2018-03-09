@@ -34,28 +34,39 @@ def volup(channel):
 	print str(datetime.now())
 	client = mpd.MPDClient()
 	client.connect("localhost", 6600)
-	#print client.status()
+	print client.status()
 	status = client.status()
 	volume = int(status['volume'])
-	if volume <= 90:
-		add = volume + 10
-		client.setvol(add)
-	else:
-		client.setvol(100)
+	add = volume + 10
+	client.setvol(add)
 	print volume
 def voldown(channel):
 	print str(datetime.now())
 	client = mpd.MPDClient()
 	client.connect("localhost", 6600)
-	#print client.status()
+	print client.status()
 	status = client.status()
 	volume = int(status['volume'])
-	if volume >= 10:
-		sub = volume - 10
-		client.setvol(sub)
-	else:
-		client.setvol(0)
+	sub = volume - 10
+	client.setvol(sub)
 	print volume
+def nexttrack(channel):
+	print str(datetime.now())
+	client = mpd.MPDClient()
+	client.connect("localhost", 6600)
+	print client.status()
+	status = client.status()
+	volume = int(status['volume'])
+	client.next()
+	client.play()
+def prevtrack(channel):
+	print str(datetime.now())
+	client = mpd.MPDClient()
+	client.connect("localhost", 6600)
+	print client.status()
+	status = client.status()
+	volume = int(status['volume'])
+	client.previous()
 
 
 
@@ -67,9 +78,11 @@ def voldown(channel):
 GPIO.add_event_detect(MAIN, GPIO.FALLING, callback=stop_start, bouncetime=300)
 GPIO.add_event_detect(VOL_UP, GPIO.FALLING, callback=volup, bouncetime=300)
 GPIO.add_event_detect(VOL_DOWN, GPIO.FALLING, callback=voldown, bouncetime=300)
+GPIO.add_event_detect(NEXT, GPIO.FALLING, callback=nexttrack, bouncetime=300)
+GPIO.add_event_detect(PREV, GPIO.FALLING, callback=prevtrack, bouncetime=300)
 try:
 	while True:
-		time.sleep(0.2)
+		time.sleep(0.4)
 except KeyboardInterrupt:
 	GPIO.cleanup()       # clean up GPIO on CTRL+C exit
 GPIO.cleanup()           # clean up GPIO on normal exit
