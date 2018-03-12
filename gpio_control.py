@@ -68,10 +68,6 @@ def prevtrack(channel):
 	volume = int(status['volume'])
 	client.previous()
 
-
-
-
-
 # The GPIO.add_event_detect() line below set things up so that
 # when a rising edge is detected on
 # GPIO 5, the mpd client stops/starts the Music
@@ -82,7 +78,7 @@ GPIO.add_event_detect(NEXT, GPIO.FALLING, callback=nexttrack, bouncetime=300)
 GPIO.add_event_detect(PREV, GPIO.FALLING, callback=prevtrack, bouncetime=300)
 try:
 	while True:
-		time.sleep(0.4)
+		time.sleep(0.2)
 except KeyboardInterrupt:
 	GPIO.cleanup()       # clean up GPIO on CTRL+C exit
 GPIO.cleanup()           # clean up GPIO on normal exit
