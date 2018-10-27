@@ -1,4 +1,4 @@
-# toddleplayer_gpio
+# musicbox_gpio
 
 This extension is based on the idea of [PiBoom](https://github.com/beakersoft/PiBoom).
 

@@ -14,7 +14,6 @@ VOL_DOWN = 5  #Turn down the volume
 VOL_UP = 11 #Turn up the volume
 SHUT = 9 #Turn Raspberry off
 LED1 = 10 #Action indicator LED
-LEDP = 16 #Power LED
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(MAIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(VOL_UP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -23,8 +22,6 @@ GPIO.setup(NEXT, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(PREV, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(SHUT, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(LED1, GPIO.OUT)
-GPIO.setup(LEDP, GPIO.OUT)
-GPIO.output(LEDP,GPIO.HIGH)
 def stop_start(channel):
 	print "Pressed stop_start"
 	GPIO.output(LED1,GPIO.HIGH)
